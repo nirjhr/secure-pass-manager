@@ -1,0 +1,79 @@
+Metadata-Version: 2.2
+Name: secure-password-manager
+Version: 0.1.0
+Summary: A secure password manager with SQLite storage
+Author-email: Nirjhar <chatnirjhar12345@gmail.com>
+Project-URL: Homepage, https://github.com/nirjhr/secure-password-manager
+Project-URL: Repository, https://github.com/nirjhr/secure-password-manager.git
+Keywords: password,security,encryption,manager
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Security
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: cryptography>=36.0.0
+
+# Secure Password Manager
+
+A secure password manager that uses SQLite for storage and strong encryption for password protection.
+
+## Features
+
+- User registration and authentication
+- Secure password storage using Fernet encryption
+- SQLite database backend
+- Command-line interface
+- List, add, retrieve, and delete passwords
+- Master password protection
+
+## Installation
+
+```bash
+pip install secure-password-manager
+```
+
+## Usage
+
+```python
+from secure_password_manager import PasswordManager
+
+# Create a new password manager instance
+pm = PasswordManager()
+
+# Register a new user
+pm.register_user("username", "master_password")
+
+# Authenticate and get user ID
+user_id = pm.authenticate_user("username", "master_password")
+
+# Store a password
+pm.store_password(user_id, "github.com", "githubuser", "password123")
+
+# Retrieve a password
+username, password = pm.get_password(user_id, "github.com")
+```
+
+## Command Line Interface
+
+You can also use the password manager from the command line:
+
+```bash
+password-manager
+```
+
+## Security
+
+- Passwords are encrypted using Fernet (symmetric encryption)
+- Master password is hashed using PBKDF2 with SHA256
+- Secure random salt generation
+- SQLite database for persistent storage
+
+## License
+
+MIT License - see LICENSE file for details.
